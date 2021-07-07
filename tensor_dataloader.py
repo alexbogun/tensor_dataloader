@@ -25,7 +25,12 @@ class FastTensorDataLoader:
         self.device = self.tensors[0].device
         self.batch_size = batch_size
         self.shuffle = shuffle
-
+        if self.shuffle:
+            self.indices = torch.randperm(self.dataset_len, device = self.device )
+        else:
+            self.indices = None
+        self.i = 0
+        
         # Calculate # batches
         n_batches, remainder = divmod(self.dataset_len, self.batch_size)
         if remainder > 0:
