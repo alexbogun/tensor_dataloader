@@ -82,6 +82,8 @@ class FastTensorDataset(torch.utils.data.Dataset):
             assert data_tensor.size(0) == target_tensor.size(0)
         self.data_tensor = data_tensor
         self.target_tensor = target_tensor
+        self.data = data_tensor
+        self.targets = target_tensor
         self.tensors = [data_tensor, target_tensor]
  
         if transform is None:
